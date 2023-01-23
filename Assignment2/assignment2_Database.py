@@ -206,3 +206,12 @@ def choiceTwoPrint(cursor):
       print("+{}+".format("-"*130))  
       print("|{:<10} |{:<15} |{:<14} |{:<9}|{:<7} |{:<11} |{:<15} |{:<13} |{:<10}|".format(name, rotation_period, orbital_period, diameter, climate, gravity, terrain, surface_water, population))
       print("+{}+".format("-"*130))
+
+# Special print statement for third query
+def choiceThreePrint(cursor):
+    print("\nFetched results: ")
+    print("+{}+".format("-"*66))
+    for name, average_height in cursor:
+        print("|{}|{:<15}|".format(name, average_height))
+        print("+{}+".format("-"*66))
+        
