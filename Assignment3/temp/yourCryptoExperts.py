@@ -161,4 +161,23 @@ def create_table_transactions(cursor):
             print(err.msg)
     else:
         print("OK")
+        
+# Default table creation
+def create_table_customerWallets(cursor):
+    data = "CREATE TABLE `customerWallets` (" \
+                 "  `adress` varchar(255) NOT NULL," \
+                 "  `profitPerWallet` double(10,5) NOT NULL," \
+                 "  PRIMARY KEY (`adress`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table customerWallets: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
+
 
