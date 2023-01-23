@@ -307,6 +307,23 @@ def overTwentyTaxView():
                    "ORDER BY customers.ID desc;")
 
 
+# Customers who paid over 20% tax.         
+def overTwentyTax():
+    cursor.execute("SELECT * FROM CustomersWithTaxOver20Percent;")
+    string = ''
+    for row, two ,three in cursor:
+        row = str(row)
+        two =str(two)
+        three = str(three)
+        string += row + ", " + two + ", " + three +"\n"
+    new = Tk()
+    label1 = Label(new, text="Customers who are paying over 20% tax\n\n                              |NAME            ID                 averageHeldMonthsPerWallet\n\n{}".format(string), font="30")
+    label1.grid(row=0, column=0)
+    canvas = Canvas(new, width=700, height=30)
+    canvas.grid(columnspan = 1, rowspan = 6)
+        
+
+
 
 
 
