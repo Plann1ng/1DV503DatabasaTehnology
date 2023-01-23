@@ -294,6 +294,20 @@ def heldForLessThanFourMonths():
             canvas.grid(columnspan = 1, rowspan = 6)
 
 
+# Creating view for function.
+def overTwentyTaxView():
+    cursor.execute("CREATE VIEW CustomersWithTaxOver20Percent as "\
+                   "select concat(customers.first_name, ' ',  "\
+                   "customers.last_name) as CustomersWithTaxOver20Percent, customers.ID as ID, "\
+                   "avg(heldMonths) as AverageHoldPeriodPerWallet "\
+                   "from customers "\
+                   "join transactions on customers.walletAdress = transactions.transactionWallet "\
+                   "where heldMonths > 12 "\
+                   "GROUP BY customers.ID "\
+                   "ORDER BY customers.ID desc;")
+
+
+
 
 
 
