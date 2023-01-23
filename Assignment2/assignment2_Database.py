@@ -261,6 +261,50 @@ def choiceThree():
         cursor.execute('SELECT name, average_height FROM {} WHERE {} > {}'.format("species", "average_height", num ))
         choiceThreePrint(cursor)
 
+# User choice four
+def choiceFour():
+    # By whitespace, because otherwise it is becoming more complicated to seperate them.
+    nam = str(input("List species' name (if you want to search for multiple species at once input names followed by whitespace: "))
+    # validating user input
+    if len(nam) <= 1:
+        raise ValueError("'\x1b[6;30;42m Name should not be empty please tap [1] and choose planet name:'\x1b[0m'")
+    # NOTE made it so that user can input one or multiple names at once and get corresponding results which is more flexible than calling the query multiple times to check
+    # if user inputs one name only.
+    if " " not in nam:
+        cursor.execute("SELECT species.`name`, planets.`climate` FROM planets JOIN species on planets.`name` = species.`homeworld` WHERE `species`.name = '{}'".format(nam))
+        print("\n+{}+".format("-"*66))
+        for name, climate in cursor:
+            name = str(name)
+            climate = str(climate)
+            chars = re.escape(string.punctuation)
+            print("|{}|{:<15}|".format(re.sub(r'['+chars+']', '',name), (re.sub(r'['+chars+']', '',climate))))
+        print("+{}+".format("-"*66))
+    else:
+        # Turn the input to list
+        nam = nam.split()
+        query = ''
+        # Special condition avoiding "OR" statement within query statement
+        if len(nam) == 1:
+            query = "species.`name` = '{}'".format(nam)
+        # Multiple names
+        elif len(nam) > 1:
+            # First part of the query takes the first name without "OR" function
+            query += "species.`name` = '{}' ".format(nam[0])
+            # Taking rest of the names with included "OR"
+            for i in range(len(nam) -1):
+                query += " OR species.`name` = '{}' ".format(nam[i + 1])
+        # Execute query joining species' homeworld to planets' name and ordering them and simply setting the limit to one to get the most common climate.
+        # NOTE it was weird that it wasn't even necesarry to even state foreign key while creating the tables.
+        cursor.execute('SELECT species.`name`, planets.`climate` FROM planets JOIN species on planets.`name` = species.`homeworld` WHERE {} ORDER BY climate DESC'.format(query))
+        # Getting rid of the special characters and returning the input.
+        print("\n+{}+".format("-"*9))
+        for i in cursor:
+            i = str(i)
+            chars = re.escape(string.punctuation)
+            print("|{}|".format(re.sub(r'['+chars+']', '',i)))
+        print("+{}+".format("-"*9))
+
+
 
 
         
