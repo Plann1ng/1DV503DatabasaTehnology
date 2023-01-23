@@ -250,6 +250,19 @@ def choiceTwo():
         choiceTwoPrint(cursor)
 
 
+# User choice three
+def choiceThree():
+    num = int(input("Provide average height for species: "))
+    # Raise error for invalid values.
+    if num < 0:
+        raise ValueError("'\x1b[6;30;42m lenght must be positive value!'\x1b[0m'")
+    # Select name and height from species with height bigger than the input.
+    else:
+        cursor.execute('SELECT name, average_height FROM {} WHERE {} > {}'.format("species", "average_height", num ))
+        choiceThreePrint(cursor)
+
+
+
         
 
         
