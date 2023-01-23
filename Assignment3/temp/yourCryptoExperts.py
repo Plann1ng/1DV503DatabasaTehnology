@@ -137,3 +137,28 @@ def create_table_taxDetails(cursor):
     else:
         print("OK")
 
+# Default table creation
+def create_table_transactions(cursor):
+    data = "CREATE TABLE `transactions` (" \
+                 "  `transactionID` varchar(255) NOT NULL," \
+                 "  `transactionWallet` varchar(255) NOT NULL," \
+                 "  `dateWirthdraw` varchar(15)," \
+                 "  `heldMonths` int(2)," \
+                 "  `buyAmount` double(10,5) NOT NULL," \
+                 "  `realizedProfit` varchar(5) NOT NULL," \
+                 "  `totalAmount` double(10,5) NOT NULL," \
+                 "  `profitAmount` double(10,5)," \
+                 "  `method` varchar(20)," \
+                 "  PRIMARY KEY (`transactionID`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table transactions: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
+
