@@ -401,6 +401,40 @@ insert_into_employees(cursor, file6)
 overTwentyTaxView()
 
 
+# NOTE gotta finish proper printing for each
+window = Tk()
+label1 = Label(window, text="Welcome to yourCryptoExperts tax preparer agency, please choose one of the options below.", font="40")
+label1.grid(row=0, column=0)
+
+canvas = Canvas(window, width=600, height=600)
+canvas.grid(columnspan = 1, rowspan = 7)
+
+#openning
+trial_what = Button(window, text="Average tax paid for 2020-2021", font="Raleway",command=lambda:averageTaxPaid(), bg='#996a6a', fg='white')
+trial_what.grid(column=0, row=1)
+
+average_what = Button(window, text="Customers who paid tax over 20%", font="Raleway", command=lambda:overTwentyTax(), bg='#996a6a', fg='white')
+average_what.grid(column=0, row=2)
+
+something_what = Button(window, text="Transaction count made by specific customer", font="Raleway",command=lambda:transactionsForCustomer(), bg='#996a6a', fg='white')
+something_what.grid(column=0, row=3)
+
+something_something = Button(window, text="Number of customers who hold their crypto for less than 4 months and were profitable", font="Raleway",command=lambda:heldForLessThanFourMonths(), bg='#996a6a', fg='white')
+something_something.grid(column=0, row=4)
+
+nothing_something = Button(window, text="Employee emails working on office 18802", font="Raleway",command=lambda:employeeEmail(), bg='#996a6a', fg='white')
+nothing_something.grid(column=0, row=5)
+
+nothing_anything = Button(window, text="Leveraged protit", font="Raleway",command=lambda:leveragedProfit(), bg='#996a6a', fg='white')
+nothing_anything.grid(column=0, row=6)
+
+nothing_what = Button(window, text="Highest tax paid within 2021", font="Raleway",command=lambda:highestTaxPaid(), bg='#996a6a', fg='white')
+nothing_what.grid(column=0, row=7)
+window.mainloop()
+cursor.close
+cnx.close
+
+
         
 
 
