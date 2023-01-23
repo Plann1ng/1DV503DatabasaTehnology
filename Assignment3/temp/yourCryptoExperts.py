@@ -187,4 +187,11 @@ def insert_into_transactions(cursor, file):
         cursor.execute("INSERT INTO transactions VALUES {}".format(values))
         cnx.commit()
  
+ # Inserting to offices necesarry information.
+def insert_into_offices(cursor, file2):
+    for name, two, three, four in csvreader2:
+        values = "({:<1}, '{:<1}', '{:<1}', {:<1});".format(name, two, three, four)
+        cursor.execute("INSERT INTO offices VALUES {}".format(values))
+        cnx.commit()
+
 
