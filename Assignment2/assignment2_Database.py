@@ -21,3 +21,12 @@ csvreader = csv.reader(file)
 # Put planets here
 file2 = open(os.getcwd() + "\\" + "planets.csv")
 csvreader2 = csv.reader(file2)
+
+# Create database with rs223fx last name.
+def create_database(cursor, name):
+    try:
+        cursor.execute("CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(name))
+        print("Using database {}".format(name))
+    except mysql.connector.Error as err:
+        print("Failed to create database {}".format(err))
+        exit(1)
