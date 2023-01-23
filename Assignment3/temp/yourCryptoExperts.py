@@ -275,6 +275,25 @@ def highestTaxPaid():
       canvas.grid(columnspan = 1, rowspan = 6)
 
 
+# Those who held less than 4 months and were profitable.
+def heldForLessThanFourMonths():
+    cursor.execute("SELECT COUNT(transactions.transactionID) "\
+                  "as TransactionCount "\
+                  "from transactions "\
+                  "where realizedProfit = 1 "\
+                  "and heldMonths < 4;")
+    result = cursor.fetchall()
+    for i in result:
+        for letter in i:
+            if letter == "(" or letter == "," or letter == ")":
+                letter = ""
+            new = Tk()
+            label1 = Label(new, text="Profitable customer count:\n\n |CUSTOMERS COUNT : {}\n".format(letter), font="30")
+            label1.grid(row=0, column=0)
+            canvas = Canvas(new, width=500, height=30)
+            canvas.grid(columnspan = 1, rowspan = 6)
+
+
 
 
 
