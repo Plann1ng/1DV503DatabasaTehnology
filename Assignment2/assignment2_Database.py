@@ -194,3 +194,15 @@ def clearPrint(cursor):
             else: 
                 print("|{:<52}|".format(name))  # *row == row element wise
                 print("+{}+".format("-"*52))
+
+# Special print statement for second query
+# NOTE tried to install prettytables which could've made this table much more prettier, however
+# failed miserable and I'm sorry for the ugly print, if I wasn't running out of time I could've fixed that.
+def choiceTwoPrint(cursor):
+    print("\nFetched results: ")
+    print("+{}+".format("-"*130))
+    print("|{:<11}|{:<1} |{:<1} |{:<1} |{:<9} |{:<11} |{:<26} |{:<1} |{:<1}|".format("name", "rotation_period", "orbital_period", "diameter", "climate", "gravity"," terrain", "surface_water", "population"))
+    for name, rotation_period, orbital_period, diameter, climate, gravity, terrain, surface_water, population in cursor:
+      print("+{}+".format("-"*130))  
+      print("|{:<10} |{:<15} |{:<14} |{:<9}|{:<7} |{:<11} |{:<15} |{:<13} |{:<10}|".format(name, rotation_period, orbital_period, diameter, climate, gravity, terrain, surface_water, population))
+      print("+{}+".format("-"*130))
