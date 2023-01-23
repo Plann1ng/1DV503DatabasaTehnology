@@ -25,3 +25,16 @@ file5 = open(os.getcwd() + "\\" + "taxDetails.csv")
 csvreader5 = csv.reader(file5)
 file6 = open(os.getcwd() + "\\" + "EmployeeTablex.csv")
 csvreader6 = csv.reader(file6)
+
+# Database name
+name = 'YourCryptoExperts'
+cursor = cnx.cursor()
+
+# Create database with the given name
+def create_database(cursor, name):
+    try:
+        cursor.execute("CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(name))
+        print("Using database {}".format(name))
+    except mysql.connector.Error as err:
+        print("Failed to create database {}".format(err))
+        exit(1)
