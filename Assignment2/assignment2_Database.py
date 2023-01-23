@@ -304,6 +304,14 @@ def choiceFour():
             print("|{}|".format(re.sub(r'['+chars+']', '',i)))
         print("+{}+".format("-"*9))
 
+# User choice five
+def choiceFive():
+    # Selecting all the collumns that were requested
+    cursor.execute('SELECT {}, avg({}) FROM {} group by classification'.format("classification","average_lifespan", "species"))
+    choiceFivePrint(cursor)
+
+
+
 
 
 
