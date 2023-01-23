@@ -241,6 +241,24 @@ def averageTaxPaid():
     canvas.grid(columnspan = 1, rowspan = 6)
 
 
+# Checking how many profitable transactions given customer managed to perform
+def transactionsForCustomer():
+    cursor.execute("SELECT customers.first_name as Customer,"\
+                   "count(transactionID) as transactionMade,"\
+                   "customers.walletAdress as Wallet "\
+                   "from customers "\
+                   "join transactions on customers.walletAdress = transactions.transactionWallet "\
+                   "where customers.ID = 9582113310 "\
+                    "and profitAmount > 0;")
+    for row, two, three in cursor:
+      new = Tk()
+      label1 = Label(new, text="How many profitable transactions given customer have:\n\n |NAME: {}\n|PROFITABLE TRANSACTIONS: {}\n|WALLET {}\n".format(row, two, three), font="30")
+      label1.grid(row=0, column=0)
+      canvas = Canvas(new, width=500, height=30)
+      canvas.grid(columnspan = 1, rowspan = 6)
+
+
+
 
 
 
