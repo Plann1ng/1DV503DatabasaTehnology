@@ -167,3 +167,13 @@ def insert_into_planets(cursor, file):
         values = "('{}', {}, {}, {}, '{}', '{}', '{}', {}, {});".format(one, two, three, four, five, six, seven, eight, nine)
         cursor.execute("INSERT INTO planets VALUES {:<1}".format(values))
         cnx.commit()
+    
+# NOTE Keep all the functions open for the first iteration, however after the data was retrieved please consider just adding "#"
+# on line 175, 177, 178, 179, 180.
+
+create_database(cursor, name)
+ifExists(name)
+create_table_planets(cursor)
+create_table_species(cursor)
+insert_into_species(cursor, file)
+insert_into_planets(cursor, file)
