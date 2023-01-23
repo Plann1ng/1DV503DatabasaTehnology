@@ -161,7 +161,7 @@ def create_table_transactions(cursor):
             print(err.msg)
     else:
         print("OK")
-        
+
 # Default table creation
 def create_table_customerWallets(cursor):
     data = "CREATE TABLE `customerWallets` (" \
@@ -180,4 +180,11 @@ def create_table_customerWallets(cursor):
     else:
         print("OK")
 
+# Inserting to the table transaction details.
+def insert_into_transactions(cursor, file):
+    for name, two, three, four, five, six, seven, eight, nine in csvreader:
+        values = "('{:<1}', '{:<1}', '{:<1}', {:<1}, {:<1}, {:<1}, {:<1}, {:<1}, '{:<1}');".format(name, two, three, four, five, six, seven, eight, nine)
+        cursor.execute("INSERT INTO transactions VALUES {}".format(values))
+        cnx.commit()
+ 
 
