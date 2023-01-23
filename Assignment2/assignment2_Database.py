@@ -96,3 +96,45 @@ def create_table_species(cursor):
             print(err.msg)
     else:
         print("OK")
+
+# Retrieve information from species.csv and import to the database.
+def insert_into_species(cursor, file):
+    # Iterate over all the values individually
+    for name, two, three, four, five, six, seven, eight, nine, ten in csvreader:
+        # Replace the values that are broking the import
+        if isinstance(nine, str):
+            if "'" in nine:
+                    nine = "Twileki"
+        # special case for indefinite
+        if isinstance(eight, str):
+                if "in" in eight:
+                        eight = 0
+        if two == "NA":
+                two = "NULL"
+        if three == "NA":
+                three = "NULL"
+        if five == "NA":
+                five = "NULL"
+        if six == "NA":
+                six = "NULL"
+        if seven == "NA":
+                seven = "NULL"
+        if eight == "NA":
+                eight = "NULL"
+        if nine == "NA":
+                nine = "NULL"
+        if ten == "NA":
+                ten = "NULL"
+        if four == "NA":
+            four = 000
+        elif "'" in name:
+                name = name.replace("'", " ")
+        elif "'" in nine:
+                nine = nine.replace("'", " ")
+        elif (eight == "NA"):
+                eight = 000
+
+        # Insert each row and commit for each row
+        values = "('{:<50}', '{:<50}', '{:<50}', {:<50}, '{:<50}', '{:<50}', '{:<50}', {:<50}, '{:<50}', '{:<50}');".format(name, two, three, four, five, six, seven, eight, nine, ten)
+        cursor.execute("INSERT INTO species VALUES {}".format(values))
+        cnx.commit()
