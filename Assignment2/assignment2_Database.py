@@ -237,6 +237,19 @@ def choiceFivePrint(cursor):
 def choiceOne():
     cursor.execute("SELECT name FROM {}".format("planets"))
     clearPrint(cursor)
+
+# User choice two
+def choiceTwo():
+    nam =  '"' + str(input("Input planet name:\n")) + '"'
+    # Raise error if the planet name is shorter than 3, encapsulation focused statement.
+    if len(nam) <= 3:
+        raise ValueError("'\x1b[6;30;42m Name should not be empty please tap [1] and choose planet name:'\x1b[0m'")
+    # Select everything from planets where name of the planet is equal to user input.
+    else:
+        cursor.execute('SELECT * FROM {} WHERE Name={}'.format("planets",nam))
+        choiceTwoPrint(cursor)
+
+
         
 
         
