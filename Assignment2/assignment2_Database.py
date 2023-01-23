@@ -310,6 +310,63 @@ def choiceFive():
     cursor.execute('SELECT {}, avg({}) FROM {} group by classification'.format("classification","average_lifespan", "species"))
     choiceFivePrint(cursor)
 
+# Main menu where the user will iterate.
+def mainMenu():
+    print("+{}+".format("-"*60))
+    print("|\n| 1. List all the planets:")
+    print("| 2. Search for planer details:")
+    print("| 3. Search for species with height higher than given number:")
+    print("| 4. What is the most likely climate of the given species:")
+    print("| 5. what is the average lifespan per species clasification:")
+    print("| Q: Quit\n|")
+    print("+{}+".format("-"*60))
+    userChoice = input()
+
+    # Taking the inputs as string, since we have mix of letter and numbers.
+    if userChoice == "1":
+        choiceOne()
+        # Returning True statements to keep the while loop running.
+        return True
+    elif userChoice == "2":
+        choiceTwo()
+        return True 
+
+    elif userChoice == "3":
+        choiceThree()
+        return True
+    elif userChoice == "4":
+        choiceFour()
+        return True
+    elif userChoice == "5":
+        choiceFive()
+        return True
+    # Returning false to state that the user quits.
+    elif userChoice == "Q" or userChoice == "q":
+        # Disconnect from the database
+        cursor.close()
+        cnx.close()
+        print("\n\x1b[6;30;42m Disconnecting... \x1b[0m\n")
+        print("\x1b[6;30;42m Bye! \x1b[0m")
+        return False
+    else:
+    # Validation for the inputs.
+        print("\x1b[6;30;42m Follow the instructions! \x1b[0m")
+        return True
+
+# Variable to start the loop
+valid = True
+while valid:
+    # Call the main method until it is closed.
+    mainMenu()
+    print("\n")
+    # Press any key to return to main menu
+    wait()
+    # break the loop.
+    if mainMenu() is False:
+        valid is False
+        break
+
+
 
 
 
