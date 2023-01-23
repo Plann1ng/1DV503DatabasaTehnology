@@ -51,3 +51,24 @@ def ifExists(name):
         cnx.database = name
     else:
         print(err)
+
+# Default table creation
+def create_table_employees(cursor):
+    data = "CREATE TABLE `employees` (" \
+                 "  `employeeID` int(4) NOT NULL," \
+                 "  `office` int(5) NOT NULL," \
+                 "  `first_name` varchar(30) NOT NULL," \
+                 "  `last_name` varchar(30) NOT NULL," \
+                 "  `email` varchar(200) NOT NULL," \
+                 "  PRIMARY KEY (`employeeID`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table employees: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
