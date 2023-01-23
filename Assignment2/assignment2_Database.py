@@ -232,4 +232,11 @@ def choiceFivePrint(cursor):
            print("| {} | {:<15} |".format(classification, average_lifespan))
            print("+{}+".format("-"*70))
 
+# User choice one
+# Not raising any errors since the function doesn't take any user input.
+def choiceOne():
+    cursor.execute("SELECT name FROM {}".format("planets"))
+    clearPrint(cursor)
+        
+
         
