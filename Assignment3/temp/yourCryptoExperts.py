@@ -348,6 +348,22 @@ def leveragedProfit():
     canvas = Canvas(new, width=700, height=30)
     canvas.grid(columnspan = 1, rowspan = 6)
 
+# Function to retrieve emails of employees working on specific office.
+def employeeEmail():
+    cursor.execute("SELECT employees.email as EmployeeEmail, offices.adress as OfficeAdress "\
+                  "from employees "\
+                  "join offices on employees.office = offices.officeCode "\
+                  "where offices.officeCode = 18802;")
+    letter = ''
+    for one, two in cursor:
+        letter += one + ", " + two +"\n"
+    new = Tk()
+    label1 = Label(new, text="Employee email and currently employed office adress\n\n{}\n".format(letter), font="30")
+    label1.grid(row=0, column=0)
+    canvas = Canvas(new, width=500, height=30)
+    canvas.grid(columnspan = 1, rowspan = 6)
+
+
         
 
 
