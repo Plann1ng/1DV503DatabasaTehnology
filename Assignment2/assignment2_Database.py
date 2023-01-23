@@ -214,4 +214,22 @@ def choiceThreePrint(cursor):
     for name, average_height in cursor:
         print("|{}|{:<15}|".format(name, average_height))
         print("+{}+".format("-"*66))
+
+# Special print statement for fifth query
+def choiceFivePrint(cursor):
+    print("\nFetched results: ")
+    print("+{}+".format("-"*70))
+    print("| {:<50} | {}|".format("clasification", "average_lifespan"))
+    print("+{}+".format("-"*70))
+    # turned average lifespan to string, because otherwise formatting was raising error.
+    for classification, average_lifespan in cursor:
+      average_lifespan = str(average_lifespan)
+      if isinstance(classification, str):
+          # pass the mammals instance.
+          if "als" in classification:
+              continue
+          else:
+           print("| {} | {:<15} |".format(classification, average_lifespan))
+           print("+{}+".format("-"*70))
+
         
