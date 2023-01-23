@@ -177,3 +177,20 @@ create_table_planets(cursor)
 create_table_species(cursor)
 insert_into_species(cursor, file)
 insert_into_planets(cursor, file)
+
+#pause method
+def wait():
+    m.getch()
+
+# Database-like printing
+def clearPrint(cursor):
+    print("\nFetched results: ")
+    print("+{}+".format("-"*52))
+
+    for i in cursor:
+        for name in i:
+            if name == "NA" or name == "none":
+                continue
+            else: 
+                print("|{:<52}|".format(name))  # *row == row element wise
+                print("+{}+".format("-"*52))
