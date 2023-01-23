@@ -72,7 +72,7 @@ def create_table_employees(cursor):
             print(err.msg)
     else:
         print("OK")
-        
+
 # Default table creation
 def create_table_customers(cursor):
     data = "CREATE TABLE `customers` (" \
@@ -95,3 +95,24 @@ def create_table_customers(cursor):
             print(err.msg)
     else:
         print("OK")
+
+# Default table creation
+def create_table_offices(cursor):
+    data = "CREATE TABLE `offices` (" \
+                 "  `officeCode` int(5) NOT NULL," \
+                 "  `email` varchar(200)," \
+                 "  `adress` varchar(255)," \
+                 "  `phone` BIGINT(11)," \
+                 "  PRIMARY KEY (`officeCode`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table offices: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
+
