@@ -30,7 +30,7 @@ def create_database(cursor, name):
     except mysql.connector.Error as err:
         print("Failed to create database {}".format(err))
         exit(1)
-        
+
 # Check if the database exists
 def ifExists(name):
     # if exists use the given database
@@ -45,3 +45,28 @@ def ifExists(name):
         cnx.database = name
     else:
         print(err)
+
+# Create empty table for planets and define variables.
+def create_table_planets(cursor):
+    data = "CREATE TABLE `planets` (" \
+                 "  `name` varchar(20) NOT NULL," \
+                 "  `rotation_period` int(2) NOT NULL," \
+                 "  `orbital_period` int(4) NOT NULL," \
+                 "  `diameter` int(6) NOT NULL," \
+                 "  `climate` varchar(25) NOT NULL," \
+                 "  `gravity` varchar(38) NOT NULL," \
+                 "  `terrain` varchar(50) NOT NULL," \
+                 "  `surface_water` int(4) NOT NULL," \
+                 "  `population` BIGINT(255) NOT NULL," \
+                 "  PRIMARY KEY (`name`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table planets: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
