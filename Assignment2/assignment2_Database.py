@@ -138,3 +138,32 @@ def insert_into_species(cursor, file):
         values = "('{:<50}', '{:<50}', '{:<50}', {:<50}, '{:<50}', '{:<50}', '{:<50}', {:<50}, '{:<50}', '{:<50}');".format(name, two, three, four, five, six, seven, eight, nine, ten)
         cursor.execute("INSERT INTO species VALUES {}".format(values))
         cnx.commit()
+
+# Retrieve information from planets.csv and import to the database.
+def insert_into_planets(cursor, file):
+    # Replace the values that are broking the import
+    for one, two, three, four, five, six, seven, eight, nine in csvreader2:
+        # remove the values where primary key not exists
+        if one == "NA":
+          continue
+
+        if four == "NA":
+            four = 0
+        if two == "NA":
+                two = 0
+        if three == "NA":
+                three = 0
+        if five == "NA":
+                five = "None"
+        if six == "NA":
+                six = "None"
+        if seven == "NA":
+                seven = "None"
+        if eight == "NA":
+                eight = 0
+        if nine == "NA":
+                nine = 0
+        # import and commit the data
+        values = "('{}', {}, {}, {}, '{}', '{}', '{}', {}, {});".format(one, two, three, four, five, six, seven, eight, nine)
+        cursor.execute("INSERT INTO planets VALUES {:<1}".format(values))
+        cnx.commit()
