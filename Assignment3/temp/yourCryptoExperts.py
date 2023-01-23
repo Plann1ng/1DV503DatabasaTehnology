@@ -72,3 +72,26 @@ def create_table_employees(cursor):
             print(err.msg)
     else:
         print("OK")
+        
+# Default table creation
+def create_table_customers(cursor):
+    data = "CREATE TABLE `customers` (" \
+                 "  `id` BIGINT(20) NOT NULL," \
+                 "  `first_name` varchar(30) NOT NULL," \
+                 "  `last_name` varchar(30) NOT NULL," \
+                 "  `caseAgent` int(4) NOT NULL," \
+                 "  `walletAdress` varchar(255) NOT NULL," \
+                 "  `OCR` int(10) NOT NULL," \
+                 "  `email` varchar(200)," \
+                 "  PRIMARY KEY (`id`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table customers: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
