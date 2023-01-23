@@ -116,3 +116,24 @@ def create_table_offices(cursor):
     else:
         print("OK")
 
+# Default table creation
+def create_table_taxDetails(cursor):
+    data = "CREATE TABLE `taxDetails` (" \
+                 "  `taxID` int(6) NOT NULL," \
+                 "  `citizenID` BIGINT(10)," \
+                 "  `adress` varchar(255)," \
+                 "  `totalProfit` double(10,5)," \
+                 "  `taxAmount` double(10,5)," \
+                 "  PRIMARY KEY (`taxID`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table taxDetails: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
+
