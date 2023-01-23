@@ -208,6 +208,15 @@ def insert_into_customers(cursor, file4):
         cursor.execute("INSERT INTO customers VALUES {}".format(values))
         cnx.commit()
 
+# Inserting into taxDetails necesarry values
+def insert_into_taxDetails(cursor, file5):
+    for name, two, three, four, five in csvreader5:
+        values = "({:<1}, {:<1}, '{:<1}', {:<1}, {:<1});".format(name, two, three, four, five)
+        cursor.execute("INSERT INTO taxDetails VALUES {}".format(values))
+        cnx.commit()
+
+
+
 
 
 
