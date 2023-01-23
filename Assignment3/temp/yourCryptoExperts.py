@@ -193,13 +193,21 @@ def insert_into_offices(cursor, file2):
         values = "({:<1}, '{:<1}', '{:<1}', {:<1});".format(name, two, three, four)
         cursor.execute("INSERT INTO offices VALUES {}".format(values))
         cnx.commit()
-        
+
 # Inserting into wallets values
 def insert_into_wallets(cursor, file3):
     for name, two in csvreader3:
         values = "('{:<1}', {:<1});".format(name, two)
         cursor.execute("INSERT INTO customerWallets VALUES {}".format(values))
         cnx.commit()
+        
+# Inserting into customers table values
+def insert_into_customers(cursor, file4):
+    for name, two, three, four, five, six, seven in csvreader4:
+        values = "({:<1}, '{:<1}', '{:<1}', {:<1}, '{:<1}', {:<1}, '{:<1}');".format(name, two, three, four, five, six, seven)
+        cursor.execute("INSERT INTO customers VALUES {}".format(values))
+        cnx.commit()
+
 
 
 
