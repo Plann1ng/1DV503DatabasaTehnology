@@ -222,6 +222,24 @@ def insert_into_employees(cursor, file6):
         cursor.execute("INSERT INTO employees VALUES {}".format(values))
         cnx.commit()
 
+# NOTE !! Each function further have its own tkinter window.
+
+
+# Average tax paid within 2020-2021
+# Motive included that query, because even though simple it is important for data statistics.
+def averageTaxPaid():
+    cursor.execute("SELECT avg(taxAmount) as AveragetaxPaid from taxDetails;")
+    result = cursor.fetchall()
+    for i in result:
+        for letter in i:
+            if letter == "(" or letter == "," or letter == ")":
+                letter = ''
+    new = Tk()
+    label1 = Label(new, text="Average tax paid between 2020 - 2021: ${}".format(letter), font="40")
+    label1.grid(row=0, column=0)
+    canvas = Canvas(new, width=500, height=30)
+    canvas.grid(columnspan = 1, rowspan = 6)
+
 
 
 
