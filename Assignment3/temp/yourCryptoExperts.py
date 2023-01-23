@@ -321,6 +321,33 @@ def overTwentyTax():
     label1.grid(row=0, column=0)
     canvas = Canvas(new, width=700, height=30)
     canvas.grid(columnspan = 1, rowspan = 6)
+
+            
+# Customers who made profit from leveraged trading
+def leveragedProfit():
+    cursor.execute("SELECT CONCAT(customers.first_name, ' ', customers.last_name) as "\
+                   "Customer, customers.ID as ID, customers.email as CustomerEmail, "\
+                   "profitAmount as ProfitMade, method "\
+                   "from customers "\
+                   "join transactions on customers.walletAdress = transactions.transactionWallet "\
+                   "where realizedProfit = '1' "\
+                   "and method = 'leverage' "\
+                   "GROUP BY ProfitMade "\
+                   "ORDER BY ProfitMade desc "\
+                   "LIMIT 10;")
+    letter = ''
+    for one, two, three, four, five in cursor:
+            two = str(two)
+            four = str(four)
+            letter += one + ', ' + two + ', ' + three + ', ' + " " +"$"+four + ", " + five +"\n"
+    new = Tk()
+    label1 = Label(new, text="Customers who made profit on leveraged trading\n\n"
+                                +"{:>2}  {:>20} {:>25} {:<10} {:>12}\n\n".format("Name", "ID", "Email", "                          ProfitAmount", "Method")
+                                +"{}\n".format(letter), font="30")
+    label1.grid(row=0, column=0)
+    canvas = Canvas(new, width=700, height=30)
+    canvas.grid(columnspan = 1, rowspan = 6)
+
         
 
 
