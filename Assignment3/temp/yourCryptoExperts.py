@@ -363,6 +363,43 @@ def employeeEmail():
     canvas = Canvas(new, width=500, height=30)
     canvas.grid(columnspan = 1, rowspan = 6)
 
+def userChoice():
+    print("[1] To see average tax paid: \n[2] To see how many transactions given customer have: \n[3] To see highest tax paid for 2021: \n[4] To see those who "
+    + "held less than four months and managed to profit: \n[5] To see those which citizens paid tax over 20 percent: \n[6] To see those who made profit with leveraged trading: \n"
+    + "[7] To see employee emails:")
+    inpt = int(input())
+    if (inpt == 1):
+        averageTaxPaid()
+    if (inpt == 2):
+        transactionsForCustomer()
+    if (inpt == 3):
+        highestTaxPaid()
+    if (inpt == 4):
+        heldForLessThanFourMonths()
+    if (inpt == 5):
+        overTwentyTax()
+    if (inpt == 6):
+        leveragedProfit()
+    if (inpt == 7):
+        employeeEmail()
+
+
+create_database(cursor, name)
+ifExists(name)
+create_table_customerWallets(cursor)
+create_table_employees(cursor)
+create_table_customers(cursor)
+create_table_offices(cursor)
+create_table_transactions(cursor)
+create_table_taxDetails(cursor)
+insert_into_transactions(cursor, file)
+insert_into_offices(cursor, file2)
+insert_into_wallets(cursor, file3)
+insert_into_customers(cursor, file4)
+insert_into_taxDetails(cursor, file5)
+insert_into_employees(cursor, file6)
+overTwentyTaxView()
+
 
         
 
