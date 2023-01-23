@@ -38,3 +38,16 @@ def create_database(cursor, name):
     except mysql.connector.Error as err:
         print("Failed to create database {}".format(err))
         exit(1)
+
+# Use the database
+def ifExists(name):
+  try:
+    cursor.execute("USE {}".format(name))
+  except mysql.connector.Error as err:
+    print("Database {} does not exist".format(name))
+    if err.errno == errorcode.ER_BAD_DB_ERROR:
+        create_database(cursor, name)
+        print("Database {} created succesfully.".format(name))
+        cnx.database = name
+    else:
+        print(err)
