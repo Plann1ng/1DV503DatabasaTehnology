@@ -257,6 +257,24 @@ def transactionsForCustomer():
       canvas = Canvas(new, width=500, height=30)
       canvas.grid(columnspan = 1, rowspan = 6)
 
+    
+# Highest paid tax per wallet
+def highestTaxPaid():
+    cursor.execute('SELECT CONCAT(customers.first_name," ",'\
+                'customers.last_name) as Customer, '\
+                'customers.ID as ID, max(taxAmount) as MaximumTaxPaidFor2021 '\
+                'from taxDetails '\
+                'join customers on taxdetails.citizenID = customers.ID '\
+                'join transactions on customers.walletAdress = transactions.transactionWallet '\
+                'where dateWirthdraw like "%2021"; ')
+    for row, two, three in cursor:
+      new = Tk()
+      label1 = Label(new, text="Highest tax paid within 2021:\n\n |CUSTOMER : {}\n|ID: {}\n|TAX PAID ${}\n".format(row, two, three), font="30")
+      label1.grid(row=0, column=0)
+      canvas = Canvas(new, width=500, height=30)
+      canvas.grid(columnspan = 1, rowspan = 6)
+
+
 
 
 
