@@ -70,3 +70,29 @@ def create_table_planets(cursor):
             print(err.msg)
     else:
         print("OK")
+
+# Create empty table for species and define variables.
+def create_table_species(cursor):
+    data = "CREATE TABLE `species` (" \
+                 "  `name` varchar(255) NOT NULL," \
+                 "  `classification` varchar(255)," \
+                 "  `designation` varchar(255) NOT NULL," \
+                 "  `average_height` int(3)," \
+                 "  `skin_colors` varchar(255)," \
+                 "  `hair_colors` varchar(255)," \
+                 "  `eye_colors` varchar(255)," \
+                 "  `average_lifespan` int(3)," \
+                 "  `language` varchar(255)," \
+                 "  `homeworld` varchar(250)," \
+                 "  PRIMARY KEY (`name`)" \
+                 ") ENGINE=InnoDB"
+    try:
+        print("Creating table species: ")
+        cursor.execute(data)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
